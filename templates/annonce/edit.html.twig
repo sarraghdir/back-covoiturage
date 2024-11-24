@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier une annonce{% endblock %}
+
+{% block body %}
+    <h1>Modifier l'annonce</h1>
+
+    <form method="post" class="annonce-form">
+        {{ form_start(form) }}
+        
+        <div class="form-group">
+            {{ form_row(form.departure) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_row(form.destination) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_row(form.departure_time) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_row(form.seats_available) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_row(form.price_per_seat) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_row(form.description) }}
+        </div>
+
+        <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
+        {{ form_end(form) }}
+    </form>
+
+    <a href="{{ path('app_annonce_list') }}" class="btn btn-secondary">Retour à la liste des annonces</a>
+{% endblock %}

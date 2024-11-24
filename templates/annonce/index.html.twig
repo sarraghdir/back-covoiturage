@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Annonces{% endblock %}
+
+{% block body %}
+<h1>Liste des Annonces</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Départ</th>
+            <th>Destination</th>
+            <th>Date et Heure</th>
+            <th>Prix</th>
+            <th>Places disponibles</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for annonce in annonces %}
+            <tr>
+                <td>{{ annonce.departure }}</td>
+                <td>{{ annonce.destination }}</td>
+                <td>{{ annonce.departureTime|date('d/m/Y H:i') }}</td>
+                <td>{{ annonce.pricePerSeat }}</td>
+                <td>{{ annonce.seatsAvailable }}</td>
+                <td>
+                    <a href="{{ path('app_annonce_edit', {'id': annonce.id}) }}" class="btn btn-warning btn-sm">Modifier</a>
+                    <a href="{{ path('app_annonce_delete', {'id': annonce.id}) }}" class="btn btn-danger btn-sm">Supprimer</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">Aucune annonce trouvée</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<!-- Ajouter le bouton revenir à l'accueil -->
+<a href="{{ path('app_annonce_home') }}" class="btn btn-primary">Revenir à l'accueil</a>
+{% endblock %}

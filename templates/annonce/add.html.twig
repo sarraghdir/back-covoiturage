@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter une Annonce{% endblock %}
+
+{% block body %}
+<h1>Ajouter une Annonce</h1>
+
+<form method="post" class="annonce-form">
+    {{ form_start(form, { 'attr': {'class': 'form'} }) }}
+    
+    <div class="form-group">
+        {{ form_row(form.departure, { 'attr': {'class': 'form-control'} }) }}
+    </div>
+    
+    <div class="form-group">
+        {{ form_row(form.destination, { 'attr': {'class': 'form-control'} }) }}
+    </div>
+    
+    <div class="form-group">
+        {{ form_row(form.departure_time, { 'attr': {'class': 'form-control'} }) }}
+    </div>
+    
+    <div class="form-group">
+        {{ form_row(form.seats_available, { 'attr': {'class': 'form-control'} }) }}
+    </div>
+    
+    <div class="form-group">
+        {{ form_row(form.price_per_seat, { 'attr': {'class': 'form-control'} }) }}
+    </div>
+    
+    <div class="form-group">
+        {{ form_row(form.description, { 'attr': {'class': 'form-control'} }) }}
+    </div>
+
+    <button type="submit" class="btn btn-success">Ajouter l'annonce</button>
+    {{ form_end(form) }}
+</form>
+
+<!-- Ajouter le bouton revenir à l'accueil -->
+<a href="{{ path('app_annonce_home') }}" class="btn btn-primary">Revenir à l'accueil</a>
+{% endblock %}
