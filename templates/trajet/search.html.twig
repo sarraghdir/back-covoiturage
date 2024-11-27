@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h1 class="text-center">Recherche de Trajets</h1>
+
+<!-- Formulaire de recherche avec Bootstrap -->
+{{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+    <div class="form-group">
+        {{ form_label(form.villeDepart, null, {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+        <div class="col-sm-10">
+            {{ form_widget(form.villeDepart, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        {% if form.villeDepart.vars.errors|length > 0 %}
+            <div class="alert alert-danger">
+                {% for error in form.villeDepart.vars.errors %}
+                    <p>{{ error.message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.villeArrivee, null, {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+        <div class="col-sm-10">
+            {{ form_widget(form.villeArrivee, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        {% if form.villeArrivee.vars.errors|length > 0 %}
+            <div class="alert alert-danger">
+                {% for error in form.villeArrivee.vars.errors %}
+                    <p>{{ error.message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.dateDepart, null, {'label_attr': {'class': 'col-sm-2 control-label'}}) }}
+        <div class="col-sm-10">
+            {{ form_widget(form.dateDepart, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        {% if form.dateDepart.vars.errors|length > 0 %}
+            <div class="alert alert-danger">
+                {% for error in form.dateDepart.vars.errors %}
+                    <p>{{ error.message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-primary">Rechercher</button>
+        </div>
+    </div>
+{{ form_end(form) }}
+
+
+{% if form.vars.submitted %}
+    {% if trajets is not empty %}
+        <ul class="list-group">
+            {% for trajet in trajets %}
+                <li class="list-group-item">
+                    <strong>{{ trajet.villeDepart }} → {{ trajet.villeArrivee }}</strong><br>
+                    Date de départ : {{ trajet.dateDepart|date('d/m/Y') }}<br>
+                    Heure de départ : {{ trajet.heureDepart|date('H:i') }}<br>
+                    Durée estimée : {{ trajet.duree|date('H:i') }}<br>
+                    Places disponibles : {{ trajet.placesDisponibles }}<br>
+                    <a href="{{ path('trajet_details', {id: trajet.id}) }}" class="btn btn-link">Voir les détails</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <div class="alert alert-info">Aucun trajet trouvé pour les critères de recherche.</div>
+    {% endif %}
+{% endif %}
+{% endblock %}

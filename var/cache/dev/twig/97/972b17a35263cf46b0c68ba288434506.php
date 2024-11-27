@@ -232,6 +232,6 @@ class __TwigTemplate_f4a477fac610794440c87c96bd324171 extends Template
 <!-- Ajouter le bouton revenir à l'accueil -->
 <a href=\"{{ path('app_annonce_home') }}\" class=\"btn btn-primary\">Revenir à l'accueil</a>
 {% endblock %}
-", "annonce/index.html.twig", "/home/sarra/login5/templates/annonce/index.html.twig");
+", "annonce/index.html.twig", "/home/siwar/back-covoiturage/templates/annonce/index.html.twig");
     }
 }

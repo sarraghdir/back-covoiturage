@@ -224,6 +224,6 @@ class __TwigTemplate_d43f59619a39aba0dcca3fe2623ce630 extends Template
     <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js\"></script>
 </body>
 </html>
-", "annonce/home.html.twig", "/home/sarra/login5/templates/annonce/home.html.twig");
+", "annonce/home.html.twig", "/home/siwar/back-covoiturage/templates/annonce/home.html.twig");
     }
 }

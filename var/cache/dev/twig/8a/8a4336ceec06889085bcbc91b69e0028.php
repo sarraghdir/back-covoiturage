@@ -242,6 +242,6 @@ class __TwigTemplate_7cbb61e76643b02e8fbbfa36b1e6ccb4 extends Template
     </div>
 </div>
 {% endblock %}
-", "registration/register.html.twig", "/home/sarra/login5/templates/registration/register.html.twig");
+", "registration/register.html.twig", "/home/siwar/back-covoiturage/templates/registration/register.html.twig");
     }
 }

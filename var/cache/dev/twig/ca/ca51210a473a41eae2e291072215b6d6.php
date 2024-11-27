@@ -216,6 +216,6 @@ class __TwigTemplate_542821d294f3e39bfcbc6e79bdfab794 extends Template
 
     <a href=\"{{ path('app_annonce_list') }}\" class=\"btn btn-secondary\">Retour à la liste des annonces</a>
 {% endblock %}
-", "annonce/edit.html.twig", "/home/sarra/login5/templates/annonce/edit.html.twig");
+", "annonce/edit.html.twig", "/home/siwar/back-covoiturage/templates/annonce/edit.html.twig");
     }
 }

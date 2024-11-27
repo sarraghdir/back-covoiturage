@@ -103,6 +103,6 @@ class __TwigTemplate_094514075284c0508d406ddff00c7872 extends Template
 <p>
     Cheers!
 </p>
-", "registration/confirmation_email.html.twig", "/home/sarra/login5/templates/registration/confirmation_email.html.twig");
+", "registration/confirmation_email.html.twig", "/home/siwar/back-covoiturage/templates/registration/confirmation_email.html.twig");
     }
 }
