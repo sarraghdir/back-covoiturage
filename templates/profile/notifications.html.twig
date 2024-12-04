@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <h1>Préférences de Notifications</h1>
+
+        {{ form_start(form) }}
+            <div class="form-group">
+                {{ form_label(form.receiveBookingReminders) }}
+                {{ form_widget(form.receiveBookingReminders) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.receiveNewTripAlerts) }}
+                {{ form_widget(form.receiveNewTripAlerts) }}
+            </div>
+
+            <button type="submit" class="btn btn-success">Sauvegarder</button>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

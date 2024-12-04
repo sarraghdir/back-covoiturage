@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <h1>Mes Trajets</h1>
+
+        {% if trajets is not empty %}
+            <ul class="list-group">
+                {% for trajet in trajets %}
+                    <li class="list-group-item">
+                        <strong>{{ trajet.villeDepart }} → {{ trajet.villeArrivee }}</strong><br>
+                        Date de départ : {{ trajet.dateDepart|date('d/m/Y') }}<br>
+                        Heure de départ : {{ trajet.heureDepart|date('H:i') }}<br>
+                        Durée estimée : {{ trajet.duree|date('H:i') }}<br>
+                        <a href="{{ path('trajet_details', {id: trajet.id}) }}" class="btn btn-link">Voir les détails</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <div class="alert alert-info">Aucun trajet trouvé.</div>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -40,6 +40,9 @@ class Trajet
     #[ORM\OneToMany(targetEntity: Reservation::class, mappedBy: 'trajet')]
     private Collection $reservations;
 
+    #[ORM\ManyToOne(inversedBy: 'trajets')]
+    private ?User $passager = null;
+
     public function __construct()
     {
         $this->reservations = new ArrayCollection();
@@ -155,6 +158,18 @@ class Trajet
                 $reservation->setTrajet(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPassager(): ?User
+    {
+        return $this->passager;
+    }
+
+    public function setPassager(?User $passager): static
+    {
+        $this->passager = $passager;
 
         return $this;
     }

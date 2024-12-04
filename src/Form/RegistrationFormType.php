@@ -11,12 +11,21 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class RegistrationFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+        ->add('nom', TextType::class, [  // Ajout du champ "nom" dans le formulaire
+            'required' => true,
+            'constraints' => [
+                new NotBlank([
+                    'message' => 'Please enter your full name',
+                ]),
+            ],
+        ])
             ->add('email')
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
@@ -50,6 +59,9 @@ class RegistrationFormType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => User::class,
+            'csrf_protection' => true,
+            'csrf_field_name' => '_token',  // Nom du champ CSRF
+            'csrf_token_id'   => 'registration_item', // ID unique du token CSRF
         ]);
     }
 }

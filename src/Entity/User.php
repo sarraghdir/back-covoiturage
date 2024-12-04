@@ -18,8 +18,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?int $id = null;
 
+    #[ORM\Column(type: 'string', length: 255)]
+    private ?string $nom = null;
+
     #[ORM\Column(length: 180)]
     private ?string $email = null;
+
+    
 
     /**
      * @var list<string> The user roles
@@ -36,9 +41,38 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private bool $isVerified = false;
 
+    #[ORM\OneToOne(targetEntity: NotificationPreferences::class, mappedBy: 'user')]
+    private ?NotificationPreferences $notificationPreferences = null;
+
+    // Getter pour NotificationPreferences
+    public function getNotificationPreferences(): ?NotificationPreferences
+    {
+        return $this->notificationPreferences;
+    }
+
+    // Setter pour NotificationPreferences
+    public function setNotificationPreferences(?NotificationPreferences $notificationPreferences): self
+    {
+        $this->notificationPreferences = $notificationPreferences;
+        return $this;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    
+    public function setNom(string $nom): self
+    {
+        $this->nom = $nom;
+
+        return $this;
     }
 
     public function getEmail(): ?string
@@ -122,4 +156,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+   
 }

@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="row">
+        <!-- Sidebar -->
+        <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+            <div class="position-sticky">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ path('passenger_profile') }}">
+                            <i class="bi bi-person"></i> Informations personnelles
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('passenger_profile_trajets') }}">
+                            <i class="bi bi-car-front"></i> Historique des trajets
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('passenger_profile_notifications') }}">
+                            <i class="bi bi-bell"></i> Notifications
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">Mon Profil</h1>
+            </div>
+
+            <!-- Informations personnelles -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h4 class="card-title">Informations personnelles</h4>
+                    <p><strong>Nom :</strong> {{ user.nom }}</p> 
+                    {# Vous pouvez enlever l'email ici comme demandé #}
+                </div>
+            </div>
+
+            <!-- Historique des trajets -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h4 class="card-title">Historique des trajets</h4>
+                    <a href="{{ path('passenger_profile_trajets') }}" class="btn btn-secondary">Voir mes trajets</a>
+                </div>
+            </div>
+
+            <!-- Préférences de notifications -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h4 class="card-title">Préférences de notifications</h4>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <strong>Rappel de réservation :</strong> 
+                            {{ user.getNotificationPreferences() ? user.getNotificationPreferences().isReceiveBookingReminders() ? 'Activé' : 'Désactivé' : 'Non défini' }}
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Alertes nouveaux trajets :</strong> 
+                            {{ user.getNotificationPreferences() ? user.getNotificationPreferences().isReceiveNewTripAlerts() ? 'Activé' : 'Désactivé' : 'Non défini' }}
+                        </li>
+                    </ul>
+                    <a href="{{ path('passenger_profile_notifications') }}" class="btn btn-primary mt-3">Modifier mes préférences</a>
+                </div>
+            </div>
+
+            <!-- Barre de recherche pour les trajets -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h4 class="card-title">Rechercher un trajet</h4>
+                    <form action="{{ path('trajet_search') }}" method="get">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Rechercher un trajet" name="search" aria-label="Search">
+                            <button class="btn btn-primary" type="submit">Rechercher</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+{% endblock %}

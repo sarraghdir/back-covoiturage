@@ -11,10 +11,8 @@ class AdminController extends AbstractController
     #[Route('/admin', name: 'app_admin')]
     public function index(): Response
     {
-        // Correction : la méthode correcte est denyAccessUnlessGranted (avec "Access")
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
-        // Rendu de la vue sans virgule superflue
         return $this->render('admin/index.html.twig');
     }
     #[Route('/welcome', name: 'app_welcome')]

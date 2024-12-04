@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1>Choisissez votre méthode de paiement</h1>
+    
+    <form method="POST" action="{{ path('payment_process') }}">
+        <div class="mb-3">
+            <label for="paymentMethod" class="form-label">Méthode de paiement</label>
+            <select class="form-control" id="paymentMethod" name="paymentMethod" required>
+                <option value="creditCard">Carte bancaire</option>
+                <option value="paypal">PayPal</option>
+                <option value="other">Autre méthode</option>
+            </select>
+        </div>
+        
+        <div class="mb-3">
+            <label for="paymentDetails" class="form-label">Détails du paiement</label>
+            <input type="text" class="form-control" id="paymentDetails" name="paymentDetails" required>
+        </div>
+
+        <input type="hidden" name="reservationId" value="{{ reservation.id }}">
+
+        <button type="submit" class="btn btn-primary">Payer</button>
+    </form>
+</div>
+{% endblock %}
